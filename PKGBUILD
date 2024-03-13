@@ -13,11 +13,24 @@ _IA32_EFI_IN_ARCH_X64="1"
 ## "1" to enable EMU build, "0" to disable
 _GRUB_EMU_BUILD="1"
 
-[[ "${CARCH}" == 'x86_64' ]] && _EFI_ARCH='x86_64'
-[[ "${CARCH}" == 'i686' ]] && _EFI_ARCH='i386'
+[ ! -v "${CARCH}" ] && \
+  CARCH="$( \
+    uname \
+      -m)"
+[[ "${CARCH}" == 'x86_64' ]] && \
+  _EFI_ARCH='x86_64'
+[[ "${CARCH}" == 'i686' ]] && \
+  _EFI_ARCH='i386'
 
-[[ "${CARCH}" == 'x86_64' ]] && _EMU_ARCH='x86_64'
-[[ "${CARCH}" == 'i686' ]] && _EMU_ARCH='i386'
+[[ "${CARCH}" == 'x86_64' ]] && \
+  _EMU_ARCH='x86_64'
+[[ "${CARCH}" == 'i686' ]] && \
+  _EMU_ARCH='i386'
+[[ "${CARCH}" == 'i686' ]] && \
+  _EMU_ARCH='i386'
+[[ "${CARCH}" == 'arm' ]] || \
+[[ "${CARCH}" == 'arm' ]] && \
+  _EMU_ARCH='i386'
 
 _pkg="grub"
 pkgbase="${_pkg}-emu"
@@ -33,6 +46,7 @@ pkgver=${_pkgver/-/}
 pkgrel=1
 url="https://www.gnu.org/software/${_pkg}"
 arch=(
+  'arm'
   'x86_64'
 )
 license=(
