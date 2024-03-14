@@ -13,7 +13,7 @@ _IA32_EFI_IN_ARCH_X64="1"
 ## "1" to enable EMU build, "0" to disable
 _GRUB_EMU_BUILD="1"
 
-[ ! -v "${CARCH}" ] && \
+[[ ! -v CARCH ]] && \
   CARCH="$( \
     uname \
       -m)"
@@ -29,7 +29,7 @@ _GRUB_EMU_BUILD="1"
 [[ "${CARCH}" == 'i686' ]] && \
   _EMU_ARCH='i386'
 [[ "${CARCH}" == 'arm' ]] || \
-[[ "${CARCH}" == 'arm' ]] && \
+[[ "${CARCH}" == 'armv7l' ]] && \
   _EMU_ARCH='i386'
 
 _pkg="grub"
